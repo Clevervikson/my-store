@@ -1,6 +1,6 @@
 .header {
     text-align: center;
-    background-color: #33B5E5;
+    background: #33B5E5;
     color: #fff;
     padding: 12px;
   }
@@ -8,4 +8,3 @@
   a {
     color: #ffffff;
   }
-  

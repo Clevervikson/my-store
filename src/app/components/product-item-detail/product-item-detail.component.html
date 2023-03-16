@@ -1,0 +1,14 @@
+<div class="detail-container">
+    <img src="{{product.url}}">
+    <div class="detail-item">
+      <h1>{{product.name}}</h1>
+      <p>${{product.price}}</p>
+      <p>{{product.description}}</p>
+      <select class="select-input" [(ngModel)]="q">
+        <option *ngFor="let val of qVals" [ngValue]="val">{{val}}</option>
+      </select>
+      <button class="btn btn-primary my-2" style="width: fit-content;" (click)="addToCart()">Add to cart</button>
+      <a routerLink="/">&larr; Back to product list</a>
+    </div>
+  </div>
+  

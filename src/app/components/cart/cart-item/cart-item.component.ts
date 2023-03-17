@@ -9,7 +9,7 @@ import { CartItem } from 'src/app/models/cartItem';
 export class CartItemComponent implements OnInit {
 
   @Input() item!: CartItem;
-  @Output() qchanged = new EventEmitter<void>();
+  @Output() qchanged = new EventEmitter<CartItem>();
 
   constructor() {}
 

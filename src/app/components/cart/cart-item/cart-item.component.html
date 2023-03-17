@@ -1,1 +1,8 @@
-<p>cart-item works!</p>
+<img class="cart-panel" [src]="item.product.url" />
+<div>
+	<h3>{{ item.product.name }}</h3>
+	<p>\${{ item.product.price }}</p>
+	<span>Amount</span>
+	<input class="number-input mx-2" [(ngModel)]="item.q" type="number" (ngModelChange)="qchanged.emit(item)" />
+</div>
+

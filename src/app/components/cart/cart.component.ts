@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { cartItem } from 'src/app/models/cartItem';
+import { CartItem } from 'src/app/models/cartItem';
 import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  items: cartItem[] = [];
+  items: CartItem[] = [];
   totalAmount = 0;
   customerName = '';
   address = '';
@@ -26,11 +26,11 @@ export class CartComponent implements OnInit {
   }
 
   updateTotalAmount(): void {
-    this.totalAmount = Math.round(this.cartService.getTotalAmount(this.items) * 100) / 100;
+    this.totalAmount = Math.round(this.cartService.updateTotal(this.items) * 100) / 100;
   }
 
-  handleQuantity(item: cartItem): void {
-    if (item.quantity === 0) {
+  handleQuantity(item: CartItem): void {
+    if (item.q === 0) {
       this.cartService.removeItem(item.product.id);
       this.items = this.cartService.getItems();
       this.updateTotalAmount();
@@ -40,7 +40,7 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.cartService.setCustomerDetails(this.customerName, this.totalAmount);
+    this.cartService.setConfDetails(this.customerName, this.totalAmount);
     this.router.navigateByUrl('/components/confirmation');
   }
 }

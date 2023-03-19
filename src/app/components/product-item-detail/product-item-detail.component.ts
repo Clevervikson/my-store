@@ -5,6 +5,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-product-item-detail',
   templateUrl: './product-item-detail.component.html',

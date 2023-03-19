@@ -1,8 +1,17 @@
+<!-- This code displays an item's details in a cart panel -->
+<!-- It uses Angular's binding syntax to display the item's name, price, and quantity -->
+
+<!-- Display the item's image -->
 <img class="cart-panel" [src]="item.product.url" />
+
+<!-- Display the item's name and price -->
 <div>
 	<h3>{{ item.product.name }}</h3>
 	<p>\${{ item.product.price }}</p>
+	
+	<!-- Display a label for the quantity input -->
 	<span>Amount</span>
+	
+	<!-- Allow the user to adjust the quantity of the item -->
 	<input class="number-input mx-2" [(ngModel)]="item.q" type="number" (ngModelChange)="qchanged.emit(item)" />
 </div>
-

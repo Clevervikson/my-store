@@ -61,6 +61,6 @@ export class CartComponent implements OnInit {
     this.cartService.setConfDetails(this.customerName, this.totalAmount);
 
     // Navigate to the confirmation page
-    this.router.navigateByUrl('/confirmation');
+    this.router.navigateByUrl('/components/confirmation');
   }
 }

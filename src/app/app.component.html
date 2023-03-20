@@ -1,14 +1,10 @@
-<header class="header">
+<!-- This div contains the header section of the page -->
+<div class="header">
+  <!-- This is the main heading of the page -->
   <h1>My Store</h1>
-  <nav>
-    <ul>
-      <li><a href="/products">Product List</a></li>
-      <li><a href="/cart">Cart</a></li>
-    </ul>
-  </nav>
-</header>
+  <!-- This is a navigation bar that links to the Cart component using routerLink -->
+  <p>List of Items | <a routerLink="/components/cart">Cart</a></p>
+</div>
 
-<main>
-  <!-- The router-outlet is where the content of the current route will be displayed -->
-  <router-outlet></router-outlet>
-</main>
+<!-- This is a placeholder element that will display the content of the current page -->
+<router-outlet></router-outlet>

@@ -1,6 +1,12 @@
+<!-- This div container holds all the products in the list -->
 <div class="product-container container">
-    <ng-container *ngFor="let product of products">
-      <app-product-item class="product-index" [product]="product"></app-product-item>
-    </ng-container>
-  </div>
-  
+
+  <!-- This ng-container loops through all the products using the *ngFor directive -->
+  <ng-container *ngFor="let product of products">
+
+    <!-- This app-product-item component represents each individual product in the list -->
+    <app-product-item class="product-index" [product]="product"></app-product-item>
+
+  </ng-container>
+
+</div>

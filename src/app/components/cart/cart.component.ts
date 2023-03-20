@@ -1,8 +1,11 @@
+// Import the required modules and services
 import { Component, OnInit } from '@angular/core';
-import { CartItem } from 'src/app/models/cartItem';
 import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
+import { CartItem } from 'src/app/models/confirm';
 
+
+// Define the component's metadata
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -10,37 +13,54 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  items: CartItem[] = [];
-  totalAmount = 0;
-  customerName = '';
-  address = '';
-  cardNumber = '';
+  // Define component properties
+  items: CartItem[] = []; // The list of items in the cart
+  totalAmount = 0; // The total cost of all items in the cart
+  customerName = ''; // The name of the customer
+  address = ''; // The customer's address
+  cardNumber = ''; // The customer's credit card number
 
-  constructor(private cartService: CartService, private router: Router) { }
+  // Inject the cart service and the router service
+  constructor(
+    private cartService: CartService, 
+    private router: Router) { }
 
+  // Called when the component is initialized
   ngOnInit(): void {
-    this.items = this.cartService.getItems();
-    if (this.items.length > 0) {
+    // Get the list of items from the cart service
+    this.items = this.cartService.getItemsInCart();
+
+    // If there are any items in the cart, update the total amount
+    if (this.items.length !== 0) {
       this.updateTotalAmount();
     }
   }
 
+  // Updates the total cost of all items in the cart
   updateTotalAmount(): void {
-    this.totalAmount = Math.round(this.cartService.updateTotal(this.items) * 100) / 100;
+    this.totalAmount = +(this.cartService.updateTotal(this.items).toFixed(2));
+
   }
 
+  // Called when the quantity of an item in the cart is changed
   handleQuantity(item: CartItem): void {
-    if (item.q === 0) {
-      this.cartService.removeItem(item.product.id);
-      this.items = this.cartService.getItems();
+    // If the quantity is 0, remove the item from the cart and update the total amount
+    if (!item.q) {
+      this.cartService.removeItem(item.product.id as number);
+      this.items = this.cartService.getItemsInCart();
       this.updateTotalAmount();
     } else {
+      // Otherwise, just update the total amount
       this.updateTotalAmount();
     }
   }
 
+  // Called when the form is submitted
   onSubmit(): void {
+    // Set the customer name and total amount in the cart service
     this.cartService.setConfDetails(this.customerName, this.totalAmount);
-    this.router.navigateByUrl('/components/confirmation');
+
+    // Navigate to the confirmation page
+    this.router.navigateByUrl('/confirmation');
   }
 }

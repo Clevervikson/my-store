@@ -1,10 +1,18 @@
 <div class="product-container">
-    <a [routerLink]="'/components/product-item-detail/' + product.id"><img class="product-image" [src]="product.url"></a>
-    <p>{{product.name}}</p>
-    <p>\${{product.price}}</p>
-    <select class="select-input" [(ngModel)]="q">
-      <option *ngFor="let val of qVals" [ngValue]="val">{{val}}</option>
-    </select>
-    <button class="btn btn-primary" (click)="addToCart()">Add to cart</button>
-  </div>
-  
+  <!-- Hyperlink to product item detail page -->
+  <a [routerLink]="'/components/product-item-detail/' + product.id">
+    <!-- Product image -->
+    <img class="product-image" [src]="product.url">
+  </a>
+  <!-- Product name -->
+  <p>{{product.name}}</p>
+  <!-- Product price -->
+  <p>\${{product.price}}</p>
+  <!-- Quantity selector -->
+  <select class="select-input" [(ngModel)]="q">
+    <!-- Loop over quantity values and create an option for each value -->
+    <option *ngFor="let val of qVals" [ngValue]="val">{{val}}</option>
+  </select>
+  <!-- Add to cart button -->
+  <button class="btn btn-primary" (click)="addToCart()">Add to cart</button>
+</div>

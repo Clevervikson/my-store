@@ -1,4 +1,4 @@
-import { CartItem } from 'src/app/models/cartItem';
+import { CartItem } from 'src/app/models/confirm';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({

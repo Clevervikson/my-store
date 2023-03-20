@@ -33,7 +33,7 @@ export class CartService {
       this.items.push({ product, q });
     }
     // Display an alert to notify the user that the item has been added to the cart
-    alert('Item Added');
+    alert('Added');
   }
 
   // Method to remove an item from the cart
@@ -41,7 +41,7 @@ export class CartService {
     // Filter out the item with the matching ID from the cart array
     this.items = this.items.filter(i => i.product.id !== id);
     // Display an alert to notify the user that the item has been removed from the cart
-    alert('Item removed!');
+    alert('Removed!');
   }
 
   // Method to update the total amount of the items in the cart

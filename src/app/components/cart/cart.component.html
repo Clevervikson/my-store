@@ -1,16 +1,37 @@
-<ng-container *ngIf="items.length > 0; else emptyCartMessage">
-  <div class="cart-container">
-      <div class="cart-item-details">
-          <app-cart-item class="cart-item" *ngFor="let item of items" [item]="item" (qchanged)="handleQuantity(item)"></app-cart-item>
-          <h2 class="text-center">Total: ${{ totalAmount }}</h2>
-      </div>
-      <form class="form-margin" #form="ngForm" (ngSubmit)="onSubmit()">
-          <!-- form inputs -->
-          <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
-      </form>
-  </div>
-</ng-container>
+<!-- The following line of code displays a message if the cart is empty, otherwise it shows the cart content -->
+<h3 class="empty-cart-message" *ngIf="items.length === 0">Empty cart. Go back to the product list and add some!</h3>
 
-<ng-template #emptyCartMessage>
-  <h3 class="empty-cart-message">Empty cart. Go back to products list and add some!</h3>
-</ng-template>
+<!-- This section is used to display the cart content if there are items in the cart -->
+<section class="cart-container" *ngIf="items.length > 0">
+  <!-- This div contains the cart item details -->
+  <div class="cart-item-details">
+    <!-- This app-cart-item component is used to display the cart items using ngFor directive and passes in the item details through the [item] property -->
+    <app-cart-item class="cart-item" *ngFor="let item of items" [item]="item" (qchanged)="handleQuantity(item)"></app-cart-item>
+    <!-- This line of code displays the total amount of the cart -->
+    <h2 class="text-center">Total: ${{totalAmount}}</h2>
+  </div>
+  <!-- This form is used to collect user details and is submitted by calling the onSubmit function on submit -->
+  <form class="form-margin" (submit)="onSubmit()" #form="ngForm">
+    <!-- This is a div containing a label and input field for the customer's full name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input id="name" class="form-control" type="text" name="name" minlength="5" placeholder="(minimum 5 characters)" [(ngModel)]="customerName" required>
+    </div>
+    <!-- This is a div containing a label and input field for the customer's address -->
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input id="address" class="form-control" type="text" name="address" minlength="5" placeholder="(minimum 5 characters)" [(ngModel)]="address" required>
+    </div>
+    <!-- This is a div containing a label and input field for the customer's credit card number -->
+    <div class="mb-3">
+      <label for="card-number" class="form-label">Credit Card Number</label>
+      <input id="card-number" class="form-control" type="number" name="card-number" minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="cardNumber" required>
+    </div>
+    <!-- This button is used to submit the form -->
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
+    <!-- This div shows an error message if the form is invalid -->
+    <div *ngIf="form.invalid" class="text-danger mt-2">
+      Please fill out all required fields and enter valid data.
+    </div>
+  </form>	
+</section>

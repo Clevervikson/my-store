@@ -8,13 +8,15 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 })
 export class CartItemComponent implements OnInit {
 
-  @Input() item!: CartItem;
-  @Output() qchanged = new EventEmitter<CartItem>();
+  @Input() item: CartItem;
+  @Output() qchanged = new EventEmitter();
 
-  constructor() {}
+  constructor() {
+    this.item = new CartItem();
+  }
 
   ngOnInit(): void {
-    this.item = new CartItem();
+    
   }
 
 }

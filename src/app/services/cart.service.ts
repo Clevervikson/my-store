@@ -24,41 +24,43 @@ export class CartService {
   // Method to add an item to cart
   public addItem(product: Product, q: number): void {
     // Find the index of the product in the cart array
-    const index = this.items.findIndex(i => i.product.id === product.id);
+    const inde = this.items.findIndex(i => i.product.id == product.id);
     // If the product is already in the cart, increase its quantity
-    if (index >= 0) {
-      this.items[index].q += q;
+    if (inde >= 0) {
+      this.items[inde] = {product: product, q: this.items[inde].q + q }
     // If it's a new product, add it to the cart array
     } else {
-      this.items.push({ product, q });
+      this.items.push({ product, q:q });
     }
     // Display an alert to notify the user that the item has been added to the cart
     alert('Added');
   }
 
+
   // Method to remove an item from the cart
   public removeItem(id: number): void {
     // Filter out the item with the matching ID from the cart array
-    this.items = this.items.filter(i => i.product.id !== id);
+    this.items = this.items.filter(i => i.product.id != id);
     // Display an alert to notify the user that the item has been removed from the cart
     alert('Removed!');
   }
 
   // Method to update the total amount of the items in the cart
-  public updateTotal(items: CartItem[]): number {
+  public updateTotalAmount(its: CartItem[]): number {
     // Set the cart array to the updated array
-    this.items = items;
+    this.items = its;
 
     // Calculate the total amount
     let amount = 0;
-    for (const item of items) {
-      amount += item.product.price * item.q;
+    for (let ite of its) {
+      amount += ite.product.price * ite.q;
     }
 
     // Return the total amount
     return amount;
   }
 
+  
   // Setter method to set details for the confirmation page
   public setConfDetails(name: string, amount: number): void {
     this.confDetails = { name, amount };

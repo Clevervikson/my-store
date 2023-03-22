@@ -31,14 +31,14 @@ export class CartComponent implements OnInit {
     this.items = this.cartService.getItemsInCart();
 
     // If there are any items in the cart, update the total amount
-    if (this.items.length !== 0) {
+    if (this.items.length > 0) {
       this.updateTotalAmount();
     }
   }
 
   // Updates the total cost of all items in the cart
   updateTotalAmount(): void {
-    this.totalAmount = +(this.cartService.updateTotal(this.items).toFixed(2));
+    this.totalAmount = +(this.cartService.updateTotalAmount(this.items).toFixed(2));
 
   }
 
